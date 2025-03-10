@@ -10,6 +10,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\raw-data\cgem_combined_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\raw-data\combined_hmi_cgem_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\raw-data\hmi_combined_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\training-data\rnn_cme_train.csv">
           <value>
             <Attribute>
