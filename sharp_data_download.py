@@ -13,11 +13,11 @@ keys_cgem = 'T_REC, HARPNUM, NOAA_AR, TOTBSQ, TOTFZ, EPSZ'
 conditions = '? (CRLN_OBS > -70) AND (CRLN_OBS < 70) AND (QUALITY = 0) AND (OBS_VR > -3500) AND (OBS_VR < 3500) ?'
 
 # Set date ranges for batching (1 year at a time)
-start_date = datetime(2018, 9, 1)
+start_date = datetime(2010, 1, 1)
 end_date = datetime(2024, 12, 31)
 
 # Output CSV file
-output_file = 'raw-data/combined_hmi_cgem_data.csv'
+output_file = 'raw-data/SHARP_hmi_cgem_data.csv'
 
 # Create an empty DataFrame to hold batch data
 all_data = pd.DataFrame()

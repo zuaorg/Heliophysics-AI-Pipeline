@@ -1,7 +1,12 @@
 import pandas as pd
 
-# Load merged SHARP and NOAA data
+# Load SHARP data
 sharp_noaa_df = pd.read_csv("raw-data/SHARP_hmi_cgem_data.csv")
+
+# Clean the 'timestamp' column to remove any unwanted spaces and characters
+sharp_noaa_df['T_REC'] = sharp_noaa_df['T_REC'].str.replace('_', ' ').str.replace('TAI', '').str.strip()
+sharp_noaa_df['T_REC'] = pd.to_datetime(sharp_noaa_df['T_REC'].str.replace('_', ' ').str.replace('TAI', ''), format='%Y.%m.%d %H:%M:%S')
+
 
 # Step 2: Load merged DONKI flare data
 flare_df = pd.read_csv("raw-data/flare_data_with_CME_SEP.csv", on_bad_lines="skip")
@@ -48,22 +53,20 @@ merged_df = merged_df.merge(
 merged_df["flrID"] = pd.to_datetime(merged_df["flrID"])
 merged_df["T_REC"] = pd.to_datetime(merged_df["T_REC"])
 
-# Apply the filter: Keep rows where either linkedSEPTime or linkedCMETime is within 12 hours after T_REC
+# Apply the filter: Keep rows where flare is either within 24 hours after T_REC or no flare occured
 filtered_df = merged_df[
-    (
-        ((merged_df["flrID"] - merged_df["T_REC"]).between(pd.Timedelta(0), pd.Timedelta(hours=12))) |
+    # (
+        ((merged_df["flrID"] - merged_df["T_REC"]).between(pd.Timedelta(0), pd.Timedelta(hours=24))) |
         (merged_df["flrID"].isna())
-    ) |
-    (
-        merged_df["linkedSEPTime"].isna() & merged_df["linkedCMETime"].isna()
-    )
+    # ) |
+    # (
+    #     merged_df["linkedSEPTime"].isna() & merged_df["linkedCMETime"].isna()
+    # )
 ]
 
-filtered_df = filtered_df.iloc[:, 1:]
+filtered_df = filtered_df.drop_duplicates()
 
-print(filtered_df.columns)
-
-print("count:", filtered_df.shape[0])
+print("Final count of datapoints:", filtered_df.shape[0])
 
 filtered_df.to_csv("processed-data/SHARP_CME_SEP.csv", index=False)
 print("Saved to processed-data/SHARP_CME_SEP.csv")
