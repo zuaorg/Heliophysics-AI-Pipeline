@@ -77,6 +77,7 @@ def train_model(args):
             dataset = removeDataColumn(c,dataset)
     log("after removal cols: " , dataset.columns)
     cols = list(dataset.columns)
+    dataset=dataset.drop_duplicates()
     if not flares_col_name in cols:
         print('The required flares class column:', flares_col_name, ' is not included in the data file')
         sys.exit()

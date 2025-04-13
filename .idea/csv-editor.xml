@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\CME-prediction\bilstm-24-performance-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\CME-prediction\gru-24-output.csv">
           <value>
             <Attribute>
@@ -11,6 +18,13 @@
           </value>
         </entry>
         <entry key="\CME-prediction\gru-24-performance-metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\CME-prediction\lstm-24-performance-metrics.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -59,6 +73,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\SEP-prediction\results\SEP_performance_metrics_BiLSTM_F_S_24.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\SEP-prediction\results\SEP_prediction_results_F_S_24.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\flare-prediction\results\ELM_result.csv">
           <value>
             <Attribute>
@@ -95,20 +123,6 @@
           </value>
         </entry>
         <entry key="\raw-data\SHARP_hmi_cgem_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\raw-data\flare_CME_SEP_data_2010_2024.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\raw-data\flare_data_with_CME_SEP.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

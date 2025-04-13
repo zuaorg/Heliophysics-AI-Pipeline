@@ -59,7 +59,7 @@ tss_threshold = 0.99
 verbose=True
 
 cols_list = [
-    "SEPLabel", "T_REC", "NOAA_AR", "HARPNUM",
+    "SEPLabel", "Timestamp", "NOAA_AR", "HARPNUM",
     "TOTUSJH", "TOTPOT", "TOTUSJZ", "ABSNJZH", "SAVNCPP", "USFLUX",
     "AREA_ACR", "MEANPOT", "R_VALUE", "SHRGT45", "MEANGAM", "MEANJZH",
     "MEANGBT", "MEANGBZ", "MEANJZD", "MEANGBH", "MEANSHR", "MEANALP",
