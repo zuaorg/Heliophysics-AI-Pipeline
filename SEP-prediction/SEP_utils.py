@@ -207,7 +207,8 @@ def load_data(datafile,
         print('Error Data file does not exist:', datafile)
         print('\nError: Data file does not exist:', datafile)
         exit()
-    df = get_data_with_filter(datafile, column=column, value=value,cols_list=cols_list)
+    df = get_data_with_filter(datafile, column=column, value=value, cols_list=cols_list)
+    df.iloc[:, 4:] = df.iloc[:, 4:].apply(lambda x: ((x - x.mean()) / x.std()).round(9))
     if  column is not None and value is not None:
         print('Filtering data the data with filters: ' , column , value)
         if operator == 'eq':

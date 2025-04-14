@@ -4680,3 +4680,159 @@ Execution time ended: 20250413_084836 and ended: 20250413_084846
   [ 847    0]]] 
 0.6825861680558685 
 Prediction accuracy: 0.6825861680558685 
+normalize_data: False 
+Your provided arguments as:  {'train_data_file': '../train-data/flare_train.csv', 'logfile': 'logs/ens_deepsun.log', 'verbose': False, 'algorithm': 'ENS', 'modelid': 'new', 'normalize_data': False} 
+=============================== Logging Stared using algorithm: ENS ============================== 
+Execution time started: 20250414_102230 
+Log files used in this run: logs/ens_deepsun.log 
+train data set: ../train-data/flare_train.csv 
+Creating a model with id: new 
+Reading data set from file: ../train-data/flare_train.csv 
+orig cols:  Index(['flareClass', 'CMELabel', 'SEPLabel', 'T_REC', 'NOAA_AR', 'HARPNUM',
+       'TOTUSJH', 'TOTPOT', 'TOTUSJZ', 'ABSNJZH', 'SAVNCPP', 'USFLUX',
+       'AREA_ACR', 'MEANPOT', 'R_VALUE', 'SHRGT45', 'MEANGAM', 'MEANJZH',
+       'MEANGBT', 'MEANGBZ', 'MEANJZD', 'MEANGBH', 'MEANSHR', 'MEANALP',
+       'TOTBSQ', 'linkedCMETime', 'linkedSEPTime'],
+      dtype='object') 
+after removal cols:  Index(['flareClass', 'TOTUSJH', 'TOTPOT', 'TOTUSJZ', 'ABSNJZH', 'SAVNCPP',
+       'USFLUX', 'AREA_ACR', 'MEANPOT', 'R_VALUE', 'SHRGT45', 'TOTBSQ'],
+      dtype='object') 
+all columns:  Index(['flareClass', 'TOTUSJH', 'TOTPOT', 'TOTUSJZ', 'ABSNJZH', 'SAVNCPP',
+       'USFLUX', 'AREA_ACR', 'MEANPOT', 'R_VALUE', 'SHRGT45', 'TOTBSQ',
+       'flarecn'],
+      dtype='object') 
+
+   flareClass  TOTUSJH        TOTPOT       TOTUSJZ  ABSNJZH       SAVNCPP        USFLUX    AREA_ACR   MEANPOT  R_VALUE  SHRGT45        TOTBSQ  flarecn
+0          M  497.171  6.762531e+22  1.110523e+13   15.378  1.266448e+12  5.466512e+21  302.568970  5202.920    3.473   34.474  7.654700e+09        3
+1          M  493.508  7.054708e+22  1.125724e+13   12.492  1.542863e+12  5.554586e+21  302.677399  5248.595    3.633   36.696  7.896500e+09        3
+2          M  541.882  7.525907e+22  1.237836e+13    6.728  6.618489e+11  5.786118e+21  318.657318  5539.501    3.500   37.107  8.615900e+09        3
+3          M  556.165  7.727608e+22  1.255399e+13    0.635  8.900266e+10  5.808368e+21  321.966339  5650.956    3.730   37.428  8.881000e+09        3
+4          M  603.635  8.016830e+22  1.345807e+13   19.870  1.935129e+12  6.015157e+21  325.361328  5699.715    3.713   38.467  9.189800e+09        3 
+=============================== Random Forest Logging Stared ============================== 
+Execution time started: 20250414_102230 
+Using model directory: custom_models for model id:  new 
+Model trained for model id: new 
+create_model saving model with dill new_rf to file: custom_models/new_rf.sav 
+Finished ok 
+final result 
+Execution time ended: 20250414_102230 and ended: 20250414_102404 
+=============================== Random Forest Logging Finished ============================== 
+Creating MLP hidden layers with neurons 
+=============================== Multiple Layer Perceptron (MLP) Logging Stared ============================== 
+Execution time started: 20250414_102230 
+Using model directory: custom_models for model id:  new 
+Model trained for model id: new 
+create_model saving model with dill new_mlp to file: custom_models/new_mlp.sav 
+Finished ok 
+final result 
+Execution time ended: 20250414_102230 and ended: 20250414_102637 
+=============================== Multiple Layer Perceptron (MLP) Logging Finished ============================== 
+Creating ELM hidden layers with neurons 
+ELM--> Creating model for training.. 
+=============================== Extreme Learning Machine (ELM) Logging Stared ============================== 
+Execution time started: 20250414_102230 
+Using model directory: custom_models for model id:  new 
+Model trained for model id: new 
+create_model saving model with dill new_elm to file: custom_models/new_elm.sav 
+Finished ok 
+final result 
+Execution time ended: 20250414_102230 and ended: 20250414_102639 
+=============================== Extreme Learning Machine (ELM) Logging Finished ============================== 
+Your provided arguments as:  {'test_data_file': '../test-data/test_data.csv', 'logfile': 'logs/ens_deepsun.log', 'verbose': False, 'algorithm': 'ENS', 'modelid': 'new', 'normalize_data': False} 
+Searching for model is: new in directory: custom_models 
+Check if file exists: custom_models/new_rf.sav : True 
+Check if file exists: custom_models/new_mlp.sav : True 
+Check if file exists: custom_models/new_elm.sav : True 
+partial_ens_trained: False 
+=============================== Logging Stared using algorithm: ENS ============================== 
+Execution time started: 20250414_102651 
+Log files used in this run: logs/ens_deepsun.log 
+train data set: ../test-data/test_data.csv 
+Creating a model with id: new 
+Reading data set from file: ../test-data/test_data.csv 
+Index(['orig cols: flareClass', 'orig cols: CMELabel', 'orig cols: SEPLabel',
+       'orig cols: T_REC', 'orig cols: NOAA_AR', 'orig cols: HARPNUM',
+       'orig cols: TOTUSJH', 'orig cols: TOTPOT', 'orig cols: TOTUSJZ',
+       'orig cols: ABSNJZH', 'orig cols: SAVNCPP', 'orig cols: USFLUX',
+       'orig cols: AREA_ACR', 'orig cols: MEANPOT', 'orig cols: R_VALUE',
+       'orig cols: SHRGT45', 'orig cols: MEANGAM', 'orig cols: MEANJZH',
+       'orig cols: MEANGBT', 'orig cols: MEANGBZ', 'orig cols: MEANJZD',
+       'orig cols: MEANGBH', 'orig cols: MEANSHR', 'orig cols: MEANALP',
+       'orig cols: TOTBSQ'],
+      dtype='object') 
+after removal cols:  Index(['flareClass', 'TOTUSJH', 'TOTPOT', 'TOTUSJZ', 'ABSNJZH', 'SAVNCPP',
+       'USFLUX', 'AREA_ACR', 'MEANPOT', 'R_VALUE', 'SHRGT45', 'TOTBSQ'],
+      dtype='object') 
+all columns:  Index(['flareClass', 'TOTUSJH', 'TOTPOT', 'TOTUSJZ', 'ABSNJZH', 'SAVNCPP',
+       'USFLUX', 'AREA_ACR', 'MEANPOT', 'R_VALUE', 'SHRGT45', 'TOTBSQ',
+       'flarecn'],
+      dtype='object') 
+
+   flareClass   TOTUSJH        TOTPOT       TOTUSJZ   ABSNJZH       SAVNCPP        USFLUX     AREA_ACR   MEANPOT  R_VALUE  SHRGT45        TOTBSQ  flarecn
+0          M  6241.393  1.310000e+24  1.130620e+14  1416.324  4.898370e+13  8.720000e+22  3213.372070  7815.085    4.898   20.096  1.007300e+11        3
+1          M  6224.056  1.310000e+24  1.133830e+14  1404.255  5.020540e+13  8.780000e+22  3204.410645  7729.381    4.867   20.134  1.007100e+11        3
+2          M  1320.134  2.600000e+23  2.958810e+13   313.517  8.536330e+12  1.480000e+22   823.606628  7167.457    3.933   43.528  1.955500e+10        3
+3          M  1315.824  2.590000e+23  2.940540e+13   294.810  8.857620e+12  1.480000e+22   819.724365  7226.893    3.937   43.386  1.941100e+10        3
+4          M  1327.658  2.580000e+23  2.930350e+13   294.311  9.220550e+12  1.500000e+22   822.015808  7290.719    4.013   41.819  1.929300e+10        3 
+Index(['after removal cols: TOTUSJH', 'after removal cols: TOTPOT',
+       'after removal cols: TOTUSJZ', 'after removal cols: ABSNJZH',
+       'after removal cols: SAVNCPP', 'after removal cols: USFLUX',
+       'after removal cols: AREA_ACR', 'after removal cols: MEANPOT',
+       'after removal cols: R_VALUE', 'after removal cols: SHRGT45',
+       'after removal cols: TOTBSQ', 'after removal cols: flarecn'],
+      dtype='object') 
+=============================== Random Forest  Prediction Logging Stared ============================== 
+Execution time started: 20250414_102651 
+Using model directory: custom_models for model id:  new 
+loading the pre-trained model 
+Loading model file: custom_models/new_rf.sav 
+Check if file exists: custom_models/new_rf.sav : True 
+Loaded model custom_models/new_rf.sav 
+Returning loaded model 
+Done loading the model.. 
+RF Performing the prediction  
+RF Done the prediction 
+Finished ok 
+Execution time ended: 20250414_102651 and ended: 20250414_102656 
+=============================== Random Forest Prediction Logging Finished ============================== 
+=============================== Multiple Layer Perceptron (MLP)  Prediction Logging Stared ============================== 
+Execution time started: 20250414_102651 
+Using model directory: custom_models for model id:  new 
+loading the pre-trained model 
+Loading model file: custom_models/new_mlp.sav 
+Check if file exists: custom_models/new_mlp.sav : True 
+Loaded model custom_models/new_mlp.sav 
+Returning loaded model 
+Done loading the model.. 
+MLP Performing the prediction  
+MLP Done the prediction 
+Finished ok 
+Execution time ended: 20250414_102651 and ended: 20250414_102659 
+=============================== Multiple Layer Perceptron (MLP) Prediction Logging Finished ============================== 
+=============================== Extreme Learning Machine (ELM)  Prediction Logging Stared ============================== 
+Execution time started: 20250414_102651 
+Using model directory: custom_models for model id:  new 
+loading the pre-trained model 
+Loading model file: custom_models/new_elm.sav 
+Check if file exists: custom_models/new_elm.sav : True 
+Loaded model custom_models/new_elm.sav 
+Returning loaded model 
+Done loading the model.. 
+ELM Performing the prediction  
+ELM Done the prediction 
+Finished ok 
+Execution time ended: 20250414_102651 and ended: 20250414_102701 
+=============================== Extreme Learning Machine (ELM) Prediction Logging Finished ============================== 
+[[[6074  121]
+  [   0    0]]
+
+ [[5015  241]
+  [ 750  189]]
+
+ [[ 321 1301]
+  [ 402 4171]]
+
+ [[5340  172]
+  [ 683    0]]] 
+0.7037933817594835 
+Prediction accuracy: 0.7037933817594835 

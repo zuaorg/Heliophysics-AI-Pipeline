@@ -74,7 +74,7 @@ def train_model(e_type, start_hour, end_hour):
         time_window = k       
         print('\n\nRunning classification type:', e_type,' training for h =', k, 'hour ahead')
         training_data_file = '../train-data/sep_train.csv'
-        testing_data_file = '../CME-prediction/gru-24-output.csv'
+        testing_data_file = '../CME-prediction/ens-24-output.csv'
         # training_data_file = 'data/events_' + str(e_type).replace('_S','').lower() + '_training_' + str(time_window) + '.csv'
         # testing_data_file = 'data/events_' + str(e_type).replace('_S','').lower() + '_testing_' + str(time_window) + '.csv'
         if not os.path.exists(training_data_file):
@@ -149,7 +149,7 @@ def train_model(e_type, start_hour, end_hour):
 
             if float(result['TSS']) >= tss_threshold:
                 model_to_save = model
-                tss = float(result['TSS']) 
+                tss = float(result['TSS'])
                 model.save_model(e_type,time_window,w_dir=None)
                 break
             current_tss = float(result['TSS'])
@@ -157,7 +157,7 @@ def train_model(e_type, start_hour, end_hour):
                 model_to_save = model
                 tss = current_tss
                         
-            
+
             file_ext = '.h5'
             if int(tf_version[0]) < 1 :
                 file_ext = ''
@@ -170,7 +170,7 @@ def train_model(e_type, start_hour, end_hour):
                 model.save_model(e_type,time_window,w_dir=None)
             else:
                 print('')
-            prev_tss  = float(result['TSS']) 
+            prev_tss  = float(result['TSS'])
     print('Finished training.\n---------------------------------------------\n')
     from collections import Counter
 

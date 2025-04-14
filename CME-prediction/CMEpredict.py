@@ -29,7 +29,6 @@ from tensorflow.keras.regularizers import l2
 from tensorflow.keras.utils import custom_object_scope
 from tensorflow.keras.callbacks import ReduceLROnPlateau, EarlyStopping, ModelCheckpoint
 from CME_utils import *
-from CME_attention import *
 
 
 warnings.filterwarnings('ignore')
@@ -95,6 +94,8 @@ def load_data(datafile, series_len, start_feature, n_features, mask_value, type,
             # Filter the DataFrame by the desired column names directly
             df_filtered = df_values0[desired_columns]
             # df_filtered = df_filtered.drop_duplicates()
+            # Apply normalization: (value - mean) / std deviation
+            df_filtered.iloc[:, 4:] = df_filtered.iloc[:, 4:].apply(lambda x: ((x - x.mean()) / x.std()).round(9))
             # If you need the result as a NumPy array, you can convert it back:
             df_values = df_filtered.values
         elif time_window == 36:
@@ -123,6 +124,8 @@ def load_data(datafile, series_len, start_feature, n_features, mask_value, type,
             # Filter the DataFrame by the desired column names directly
             df_filtered = df_values0[desired_columns]
             # df_filtered = df_filtered.drop_duplicates()
+            # Apply normalization: (value - mean) / std deviation
+            df_filtered.iloc[:, 4:] = df_filtered.iloc[:, 4:].apply(lambda x: ((x - x.mean()) / x.std()).round(9))
             # If you need the result as a NumPy array, you can convert it back:
             df_values = df_filtered.values
         elif time_window == 36:
@@ -144,6 +147,8 @@ def load_data(datafile, series_len, start_feature, n_features, mask_value, type,
             # Filter the DataFrame by the desired column names directly
             df_filtered = df_values0[desired_columns]
             # df_filtered = df_filtered.drop_duplicates()
+            # Apply normalization: (value - mean) / std deviation
+            df_filtered.iloc[:, 4:] = df_filtered.iloc[:, 4:].apply(lambda x: ((x - x.mean()) / x.std()).round(9))
             # If you need the result as a NumPy array, you can convert it back:
             df_values = df_filtered.values
 
@@ -376,7 +381,7 @@ def get_n_features_thresh(type, time_window):
         elif time_window == 24:
             n_features = 12
             # thresh = 0.48631
-            thresh = 0.45
+            thresh = 0.5
         elif time_window == 36:
             n_features = 9
             thresh = 0.45
@@ -424,10 +429,10 @@ if __name__ == '__main__':
     gru_n_features, gru_thresh = get_n_features_thresh('gru', time_window)
     lstm_n_features, lstm_thresh = get_n_features_thresh('lstm', time_window)
     bilstm_n_features, bilstm_thresh = get_n_features_thresh('bilstm', time_window)
-    thresh = 0.49
+    thresh = 0.5
     mask_value = 0
     series_len = 20
-    epochs = 20
+    epochs = 30
     batch_size = 256
     nclass = 2
 
@@ -535,6 +540,7 @@ if __name__ == '__main__':
                                           verbose=True,
                                           shuffle=True,
                                           class_weight=class_weight_lstm)
+            print('finished lstm training...')
 
             gru_optimizer = Adam(learning_rate=0.001)
             gru_reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, verbose=1)
@@ -574,11 +580,13 @@ if __name__ == '__main__':
                                 verbose=True,
                                 shuffle=True,
                                 class_weight=class_weight_bilstm)
+            print('finished bilstm training...')
+
         else:
             # Define optimizer and callbacks
             optimizer = Adam(learning_rate=0.001)
             reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, verbose=1)
-            early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, restore_best_weights=True)
+            early_stopping = EarlyStopping(monitor='val_loss', patience=20, verbose=1, restore_best_weights=True)
             checkpoint = ModelCheckpoint('best-' + type + '-' + str(time_window) + '-model.h5', monitor='val_loss',
                                          save_best_only=True, verbose=1)
             model.compile(loss='binary_crossentropy',
@@ -637,7 +645,6 @@ if __name__ == '__main__':
 
     else:
         n_features, thresh = get_n_features_thresh(type, time_window)
-        print(n_features)
         X_test, y_test, nb_test = load_data(datafile=test_data_file,
                                             series_len=series_len,
                                             start_feature=start_feature,
